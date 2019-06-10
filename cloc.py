@@ -12,6 +12,7 @@ if __name__ == "__main__":
     #print file_to_test
     
     sig_line = 0
+    blank_line = 0
     total_line = 0
     #create the file type.
     f = open(file_to_test, "r")
@@ -35,7 +36,7 @@ if __name__ == "__main__":
         pyt = Python()
         singleline, multiline1, multiline2 = pyt.getting()
         #call the calculator function
-        print "File is a python file"
+        # print "File is a python file"
   
     elif file_to_test.endswith('.java') or file_to_test.endswith('.js'):
         javajs = JavaJS()
@@ -44,9 +45,9 @@ if __name__ == "__main__":
     print "Total number of lines are " + str(total_line)
 
     #call the calculator function
-    sig_line = calc.cloc_action(line_list, singleline, multiline1, multiline2)
+    sig_line, blank_line = calc.cloc_action(line_list, singleline, multiline1, multiline2)
     print "Number of significant lines are " + str(sig_line)
-    print "Number of commented lines are " + str(total_line - sig_line)
+    print "Number of commented lines are " + str(total_line - sig_line - blank_line)
     
 
     

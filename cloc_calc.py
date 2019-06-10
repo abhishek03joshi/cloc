@@ -4,37 +4,32 @@ class Calc(object):
 
     
     def cloc_action(self, line_list, singleline, multiline1, multiline2):
-        multi_index_array = []
-        singe_index_array = []
-        index = 0
-
+        #Checking contents of line list array
+        #print line_list
+        
+        is_multiline = False
+        sig_line = 0
+        blank_line = 0
         for line in line_list:
-            if line.startswith(singleline):
-                # debugging to check the comment line.
-                singe_index_array.append(index)
+            line = line.strip()
+            #print line
+            if line.startswith(singleline) and is_multiline == False:
                 continue
-            elif line.startswith(multiline1) or line.startswith(multiline2):
-                #Calling another function from another module for muliline comment
-                # print 'Multiline comment and need to branch to the multiline method.'
-                multi_index_array.append(index)
+            elif line.startswith(multiline1) and is_multiline == False:
+                is_multiline = True
                 continue
-            else:
+            elif line.startswith(multiline2) and is_multiline == True:
+                is_multiline = False
                 continue
-            
-            index += 1
-
-        
-        #remove singleline comments from line_array
-        for ind in singe_index_array:
-            line_list.pop(ind)
-
-        #remove multiline comments from line_array
-        
+            elif is_multiline == False and (not line.startswith("\n")):
+                sig_line += 1
+            elif line.startswith("\n"):
+                blank_line += 1
 
 
 
         
         #print "Significant lines are %d " % len(line_list)
-        return len(line_list)
+        return sig_line, blank_line
 
  
