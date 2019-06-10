@@ -1,6 +1,7 @@
 import sys
 from javajs import JavaJS
 from python import Python
+from ruby import Ruby
 from cloc_calc import Calc
 
 if __name__ == "__main__":
@@ -42,11 +43,16 @@ if __name__ == "__main__":
         javajs = JavaJS()
         singleline, multiline1, multiline2 = javajs.getting()
     
+    elif file_to_test.endswith('.rb'):
+        rub = Ruby()
+        singleline, multiline1, multiline2 = rub.getting()
+    
     print "Total number of lines are " + str(total_line)
 
     #call the calculator function
     sig_line, blank_line = calc.cloc_action(line_list, singleline, multiline1, multiline2)
     print "Number of significant lines are " + str(sig_line)
+    print "Number of blank lines are " + str(blank_line)
     print "Number of commented lines are " + str(total_line - sig_line - blank_line)
     
 

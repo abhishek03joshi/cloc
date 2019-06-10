@@ -11,7 +11,7 @@ class Calc(object):
         sig_line = 0
         blank_line = 0
         for line in line_list:
-            line = line.strip()
+            line = line.strip(" ")
             #print line
             if line.startswith(singleline) and is_multiline == False:
                 continue
@@ -23,8 +23,12 @@ class Calc(object):
                 continue
             elif is_multiline == False and (not line.startswith("\n")):
                 sig_line += 1
+                continue
             elif line.startswith("\n"):
+                #testing to check blank line
+                #print "blank line"
                 blank_line += 1
+                continue
 
 
 
