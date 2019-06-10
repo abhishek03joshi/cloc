@@ -46,7 +46,10 @@ if __name__ == "__main__":
     elif file_to_test.endswith('.rb'):
         rub = Ruby()
         singleline, multiline1, multiline2 = rub.getting()
-    
+    else:
+        print "Woops, please ensure that the input file is of type java, javascript, python or ruby only"
+        exit()
+
     print "Total number of lines are " + str(total_line)
 
     #call the calculator function
